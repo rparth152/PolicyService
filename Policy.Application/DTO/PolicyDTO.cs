@@ -15,7 +15,6 @@ namespace Policy.Application.DTO
             public DateOnly Policy_End { get; set; }
             public int Premium_Ammount { get; set; }
             public string Status { get; set; }
-            public string Customer_Name { get; set; }
         }
     
 }

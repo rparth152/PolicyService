@@ -39,14 +39,14 @@ namespace Policy.Infrastructure.Service
             return true;
         }
 
-        public async Task<List<PolicyDTO>> GetAllPolicies()
+        public async Task<List<PolicyCnameDTO>> GetAllPolicies()
         {
             var policies = await db.InsurancePolicies.ToListAsync();
-            var result = new List<PolicyDTO>();
+            var result = new List<PolicyCnameDTO>();
 
             foreach (var policy in policies)
             {
-                var mapped = mapper.Map<PolicyDTO>(policy);
+                var mapped = mapper.Map<PolicyCnameDTO>(policy);
                 var customer = await customerClient.GetCustomerById(policy.Customer_Id);
                 mapped.Customer_Name = customer?.Customer_Name;
                 result.Add(mapped);
@@ -55,20 +55,20 @@ namespace Policy.Infrastructure.Service
             return result;
         }
 
-        public async Task<PolicyDTO> GetPolicyByID(int id)
+        public async Task<PolicyCnameDTO> GetPolicyByID(int id)
         {
             var data = await db.InsurancePolicies.FindAsync(id);
 
             if (data == null)
                 throw new Exception("Policy not found");
 
-            var res = mapper.Map<PolicyDTO>(data);
+            var res = mapper.Map<PolicyCnameDTO>(data);
             var customer = await customerClient.GetCustomerById(data.Customer_Id);
             res.Customer_Name = customer.Customer_Name;
 
             return res;
         }
-
+         
         public async Task<bool> UpdatePolicy(int id, PolicyDTO dto)
         {
             var data = await db.InsurancePolicies.FindAsync(id);
