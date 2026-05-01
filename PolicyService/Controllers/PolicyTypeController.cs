@@ -9,11 +9,11 @@ namespace Policy.Controllers
     [ApiController]
     public class PolicyTypeController : ControllerBase
     {
-        private readonly IPolicyTypeService _service;
+        private readonly IPolicyTypeService service;
 
         public PolicyTypeController(IPolicyTypeService service)
         {
-            _service = service;
+            this.service = service;
         }
 
         [HttpPost]
@@ -22,7 +22,7 @@ namespace Policy.Controllers
             if (dto == null)
                 return BadRequest("Invalid data");
 
-            var result = await _service.AddTypePolicy(dto);
+            var result = await service.AddTypePolicy(dto);
 
             return Ok(new
             {
@@ -30,11 +30,16 @@ namespace Policy.Controllers
                 message = "Policy Type Added Successfully"
             });
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetAllTypes()
+        {
+            var data = await service.GetAllPolicies();
+            return Ok(data);
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTypeById(int id)
         {
-            var data = await _service.GetTypeById(id);
+            var data = await service.GetTypeById(id);
 
             if (data == null)
                 return NotFound("Policy Type not found");
@@ -48,7 +53,7 @@ namespace Policy.Controllers
             if (dto == null)
                 return BadRequest("Invalid data");
 
-            var result = await _service.UpdateType(id, dto);
+            var result = await service.UpdateType(id, dto);
 
             return Ok(new
             {
@@ -60,7 +65,7 @@ namespace Policy.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteType(int id)
         {
-            var result = await _service.DeleteType(id);
+            var result = await service.DeleteType(id);
 
             return Ok(new
             {

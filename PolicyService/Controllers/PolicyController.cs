@@ -21,8 +21,7 @@ namespace Policy.Controllers
             if (data == null) { return NotFound(); }
             return Ok(new { message = "Data Added", data });
         }
-        [HttpGet]
-        [Route("getall")]
+        [HttpGet] 
         public async Task<IActionResult> GetAllPolicy() {
             var data= await service.GetAllPolicies();
             return Ok(new { message = "Data Fetched", data });

@@ -13,5 +13,6 @@ namespace Policy.Application.Interface
         Task<PolicyTypeDTO> GetTypeById(int id);
         Task<bool> UpdateType(int id, PolicyTypeDTO dto);
         Task<bool> DeleteType(int id);
+        Task<List<PolicyTypegetallDTO>> GetAllPolicies();
     }
 }

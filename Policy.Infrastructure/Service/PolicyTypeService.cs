@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Policy.Application.DTO;
 using Policy.Application.Interface;
 using Policy.Domain.Model;
@@ -46,7 +47,10 @@ namespace Policy.Infrastructure.Service
             var data = await db.TypeOfPolicies.FindAsync(id);
             return mapper.Map<PolicyTypeDTO>(data);
         }
-
+        public async Task<List<PolicyTypegetallDTO>> GetAllPolicies() {
+            var data = await db.TypeOfPolicies.Where(x => x.Status == "Active").ToListAsync();
+            return mapper.Map<List<PolicyTypegetallDTO>>(data);
+        }
         public async Task<bool> UpdateType(int id, PolicyTypeDTO dto)
         {
             var data = await db.TypeOfPolicies.FindAsync(id);
