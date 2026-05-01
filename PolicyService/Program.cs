@@ -18,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddHttpClient<CustomerClient>(client =>
 {
     client.BaseAddress = new Uri(
-        builder.Configuration["CustomerAddress"] ?? "https://localhost:7047/");
+        builder.Configuration["CustomerAddress"] ?? "https://localhost:7047");
 });
 
 builder.Services.AddScoped<IPolicyService, PolicyService>();

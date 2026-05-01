@@ -16,7 +16,8 @@ namespace Policy.Application.DTO
         }
         public async Task<CustomerDTO> GetCustomerById(int id)
         {
-            return await client.GetFromJsonAsync<CustomerDTO>($"api/Customer/{id}");
+            CustomerDTO dt= await client.GetFromJsonAsync<CustomerDTO>($"api/{id}");
+            return dt;
         }
 
     }

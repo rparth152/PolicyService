@@ -17,6 +17,8 @@ namespace Policy.Application.Mapping
             CreateMap<PolicyDTO, InsurancePolicy>().ReverseMap();
             CreateMap<InsurancePolicy, PolicyDTO>().ReverseMap();
             CreateMap<TypeOfPolicy, PolicyTypegetallDTO>().ReverseMap();
+            CreateMap<InsurancePolicy, PolicyDTO>();
+            CreateMap<InsurancePolicy, PolicyCnameDTO>();
         }
 
     }

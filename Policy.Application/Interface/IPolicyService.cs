@@ -10,8 +10,8 @@ namespace Policy.Application.Interface
     public interface IPolicyService
     {
         Task<bool> AddPolicy(PolicyDTO dto);
-        Task<PolicyDTO> GetPolicyByID(int id);
-        Task<List<PolicyDTO>> GetAllPolicies();
+        Task<PolicyCnameDTO> GetPolicyByID(int id);
+        Task<List<PolicyCnameDTO>> GetAllPolicies();
         Task<bool> UpdatePolicy(int id, PolicyDTO dto);
         Task<bool> DeletePolicy(int id);
     }
